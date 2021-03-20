@@ -66,14 +66,18 @@ let cookieBar = {
             }
         }
         document.getElementById('cookie_bar').style.display = 'none';
-        document.getElementById('cookie_box').style.display = 'none';
+        if(document.getElementById('cookie_box')) {
+            document.getElementById('cookie_box').style.display = 'none';
+        }
         this.setCookie('marertesitettunk_eu', JSON.stringify(en), 365);
         this.onEnabled();
     },
     enable: function () {
         document.getElementById('cookie_bar').style.display = 'none';
-        document.getElementById('cookie_box').style.display = 'none';
-        this.setCookie('marertesitettunk_eu', true, 365);
+        if(document.getElementById('cookie_box')) {
+            document.getElementById('cookie_box').style.display = 'none';
+        }
+        this.setCookie('marertesitettunk_eu', 1, 365);
         this.onEnabled();
     },
 
@@ -99,7 +103,7 @@ let cookieBar = {
         }
         for (const key in this.options.services) {
             let sv = this.options.services[key];
-            if(c === true || c.indexOf(sv.category)>-1){
+            if(c === 1 || c.indexOf(sv.category)>-1){
                 console.log(sv);
                 if(!sv.url){
                     if(!sv.runAfter) {
